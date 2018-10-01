@@ -18,10 +18,11 @@ from .views import *
 
 
 urlpatterns = [
-    # url(r'^$', add, name="add"),
+    url(r'^$', add, name="add"),
     # url(r'^pdf_create/', write_pdf_view, name="pdf"),
     # url(r'^pdf_create/', html_to_pdf_view, name="pdf"),
-    url(r'^pdf_create/', PdfView.as_view(), name="pdf"),
+    # url(r'^pdf_create/', PdfView.as_view(), name="pdf"),
 
     url(r'^(?P<slug>[\w-]+)/$', pdf_details, name="pdf_details"),
+    url(r'^(?P<slug>[\w-]+)/pdf_create/$', PdfView.as_view(), name="pdf_create"),
 ]

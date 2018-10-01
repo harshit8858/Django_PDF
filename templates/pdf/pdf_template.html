@@ -52,7 +52,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h3>Pdf</h3>
+            <h3>{{instance.title}}</h3>
         </div>
 
         <div class="list-group">
@@ -67,12 +67,10 @@
             </tr>
             </thead>
             <tbody>
-            {% for d in data %}
                 <tr>
-                    <td>{{ d.title }}</td>
-                    <td>{{ d.data }}</td>
+                    <td>{{ instance.title }}</td>
+                    <td>{{ instance.data }}</td>
                 </tr>
-            {% endfor %}
             </tbody>
         </table>
     </div>
