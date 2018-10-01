@@ -86,14 +86,13 @@ from django.views.generic import View
 from django.utils import timezone
 from .models import *
 from .render import *
-import requests
 from threading import Thread, activeCount
 from django.core.mail import EmailMessage
 
 
 class PdfView(View):
 
-    def get(self, request,slug):
+    def get(self, request, slug):
         instance = get_object_or_404(Pdf, slug=slug)
         today = timezone.now()
         params = {
@@ -112,11 +111,8 @@ class PdfView(View):
         # email.send()
 
         file = Render.render_to_file('pdf/pdf_template.html', params)
-        print(file)
-        email = EmailMessage('subject', 'message',
-                ['harshit8858@gmail.com'], ['harshit8858@gmail.com'])
-        # email.attach(file, "application/pdf")
-        email.send()
+        name = str(file[0])
+        name1 = name[0:len(name)-4]
 
         return Render.render('pdf/pdf_template.html', params)
 
