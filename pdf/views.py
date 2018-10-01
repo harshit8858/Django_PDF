@@ -62,7 +62,6 @@ from .render import Render
 class PdfView(View):
     def get(self, request, slug):
         instance = get_object_or_404(Pdf, slug=slug)
-        print(instance)
         data = Pdf.objects.all()
         sales = Pdf.objects.all()
         today = timezone.now()
@@ -76,9 +75,17 @@ class PdfView(View):
         return Render.render('pdf/pdf_template.html', params)
 
 
+from django.core.mail import send_mail
 
 
-
+def mail(request):
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'from@example.com',
+        ['to@example.com'],
+        fail_silently=False,
+    )
 
 # from django.core.files.storage import FileSystemStorage
 # from django.template.loader import render_to_string

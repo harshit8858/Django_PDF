@@ -22,6 +22,7 @@ urlpatterns = [
     # url(r'^pdf_create/', write_pdf_view, name="pdf"),
     # url(r'^pdf_create/', html_to_pdf_view, name="pdf"),
     # url(r'^pdf_create/', PdfView.as_view(), name="pdf"),
+    url(r'^mail/', mail, name="mail"),
 
     url(r'^(?P<slug>[\w-]+)/$', pdf_details, name="pdf_details"),
     url(r'^(?P<slug>[\w-]+)/pdf_create/$', PdfView.as_view(), name="pdf_create"),
