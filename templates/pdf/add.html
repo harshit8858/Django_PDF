@@ -1,0 +1,14 @@
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+<hr/>
+
+{% for d in data %}
+    {{d}}<br/>
+    <a href="{{d.get_absolute_url}}">
+        Open
+    </a>
+    <hr>
+{% endfor %}
