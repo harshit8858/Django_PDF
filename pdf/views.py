@@ -31,48 +31,97 @@ def pdf_details(request, slug):
     return render(request, 'pdf/pdf_details.html', context)
 
 
-# def write_pdf_view(request, slug):
-#     instance = get_object_or_404(Pdf, slug=slug)
-#     data = Pdf.objects.all()
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'inline; filename="mypdf.pdf"'
-#     html_string = render_to_string('pdf/pdf_template.html', {'paragraphs': data})
+from io import BytesIO
+from reportlab.pdfgen import canvas
+
+
+def write_pdf_view(request):
+    data = Pdf.objects.all()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="mypdf.pdf"'
+    html_string = render_to_string('pdf/pdf_template.html', {'paragraphs': data})
+
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer)
+
+    # Start writing the PDF here
+    p.drawString(200, 600, 'hihi')
+    # End writing
+
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response
+
+# from django.views.generic import View
+# from django.utils import timezone
+# from .models import *
+# from .render import Render
 #
-#     buffer = BytesIO()
-#     p = canvas.Canvas(buffer)
 #
-#     # Start writing the PDF here
-#     p.drawString(200, 600, html_string)
-#     # End writing
-#
-#     p.showPage()
-#     p.save()
-#
-#     pdf = buffer.getvalue()
-#     buffer.close()
-#     response.write(pdf)
-#
-#     return response
+# class PdfView(View):
+#     def get(self, request, slug):
+#         instance = get_object_or_404(Pdf, slug=slug)
+#         data = Pdf.objects.all()
+#         sales = Pdf.objects.all()
+#         today = timezone.now()
+#         params = {
+#             'instance': instance,
+#             'data': data,
+#             'today': today,
+#             'sales': sales,
+#             'request': request
+#         }
+#         return Render.render('pdf/pdf_template.html', params)
+
+
+
+
 
 from django.views.generic import View
 from django.utils import timezone
 from .models import *
-from .render import Render
+from .render import *
+import requests
+from threading import Thread, activeCount
+from django.core.mail import EmailMessage
+
 
 class PdfView(View):
-    def get(self, request, slug):
+
+    def get(self, request,slug):
         instance = get_object_or_404(Pdf, slug=slug)
-        data = Pdf.objects.all()
-        sales = Pdf.objects.all()
         today = timezone.now()
         params = {
             'instance': instance,
-            'data': data,
             'today': today,
-            'sales': sales,
             'request': request
         }
+        # file = Render.render_to_file('pdf/pdf_template.html', params)
+        # print('files=====')
+        # print(file[0])
+        #
+        # email = EmailMessage('subject', 'message',
+        #         ['harshit8858@gmail.com'], ['harshit8858@gmail.com'])
+        # # email.attach_file('file_name', att.read(), 'application/pdf')
+        # # email.attach(file, "application/pdf")
+        # email.send()
+
+        file = Render.render_to_file('pdf/pdf_template.html', params)
+        print(file)
+        email = EmailMessage('subject', 'message',
+                ['harshit8858@gmail.com'], ['harshit8858@gmail.com'])
+        # email.attach(file, "application/pdf")
+        email.send()
+
         return Render.render('pdf/pdf_template.html', params)
+
+
+
 
 
 from django.core.mail import send_mail
