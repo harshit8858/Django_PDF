@@ -40,23 +40,28 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'harshit8858@gmail.com'
 
 
+# DROPBOX_APP_KEY = "ceeazamyfgh1xnr"
+# DROPBOX_APP_SECRET_KEY = "utmazdem7tkr7lr"
+# DROPBOX_APP_ACCESS_TOKEN = "QEFuTSSnz8AAAAAAAAAAEVtBW0efQH_joYXKRH4hizcXt7hkwqRtqqgb3knXZYzH"
+# DROPBOX_APP_ACCESS_TOKEN_SECRET = ""
+#
+# # Optional values below
+#
+# # The folder where you want the files uploaded.
+# # Example: /Public or /
+# DROPBOX_FILE_UPLOAD_FOLDER = ""
+# # The value below may be either 'app_folder' or 'dropbox'
+# DROPBOX_ACCESS_TYPE = ""
+#
+# FILE_UPLOAD_HANDLERS = (
+#     "pdf.dropbox_upload_handler.DropboxFileUploadHandler",
+# )
 
-DROPBOX_APP_KEY = "ceeazamyfgh1xnr"
-DROPBOX_APP_SECRET_KEY = "utmazdem7tkr7lr"
-DROPBOX_APP_ACCESS_TOKEN = "QEFuTSSnz8AAAAAAAAAAEVtBW0efQH_joYXKRH4hizcXt7hkwqRtqqgb3knXZYzH"
-DROPBOX_APP_ACCESS_TOKEN_SECRET = ""
-
-# Optional values below
-
-# The folder where you want the files uploaded.
-# Example: /Public or /
-DROPBOX_FILE_UPLOAD_FOLDER = ""
-# The value below may be either 'app_folder' or 'dropbox'
-DROPBOX_ACCESS_TYPE = ""
-
-FILE_UPLOAD_HANDLERS = (
-    "pdf.dropbox_upload_handler.DropboxFileUploadHandler",
-)
+# cloudinary.config(
+#   cloud_name = "sample",
+#   api_key = "874837483274837",
+#   api_secret = "a676b67565c6767a6767d6767f676fe1"
+# )
 
 
 # Application definition
@@ -69,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pdf',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
