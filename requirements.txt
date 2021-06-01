@@ -21,6 +21,6 @@ reportlab==3.5.8
 requests==2.19.1
 six==1.11.0
 tinycss2==0.6.1
-urllib3==1.23
+urllib3==1.26.5
 webencodings==0.5.1
 xhtml2pdf==0.2.3
