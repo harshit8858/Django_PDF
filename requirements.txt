@@ -4,7 +4,7 @@ chardet==3.0.4
 cloudinary==1.13.0
 cssselect2==0.2.1
 defusedxml==0.5.0
-Django==2.1.1
+Django==2.2.24
 django-dropbox-upload-handler==0.1.1
 dropbox==9.0.0
 html5lib==1.0.1
