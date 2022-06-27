@@ -17,7 +17,7 @@ pycparser==2.19
 PyPDF2==1.26.0
 Pyphen==0.9.5
 pytz==2018.5
-reportlab==3.5.8
+reportlab==3.5.55
 requests==2.19.1
 six==1.11.0
 tinycss2==0.6.1
